@@ -9,5 +9,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 			Authorization: `${cookieService.get('Authorization')}`,
 		},
 	})
+
+	console.log(req)
 	return next(req)
 }

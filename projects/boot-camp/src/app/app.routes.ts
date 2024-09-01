@@ -13,7 +13,26 @@ export const routes: Routes = [
 		canActivate: [authGuard],
 	},
 	{
+		path: 'blog-post',
+		loadComponent: () => import('./features/blog-post/blog-post.component').then((m) => m.BlogPostComponent),
+		canActivate: [authGuard],
+	},
+	{
+		path: 'blog-post/add',
+		loadComponent: () => import('./features/blog-post-add/blog-post-add.component').then((m) => m.BlogPostAddComponent),
+		canActivate: [authGuard],
+	},
+	{
+		path: 'home',
+		loadComponent: () => import('./features/home/home.component').then((m) => m.HomeComponent),
+	},
+	{
 		path: 'login',
 		loadComponent: () => import('./auth/login/login/login.component').then((m) => m.LoginComponent),
+	},
+	{
+		path: '',
+		redirectTo: 'home',
+		pathMatch: 'full',
 	},
 ]
