@@ -1,22 +1,27 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { CategoriesModel } from '../models/categories.model';
+import { HttpClient } from '@angular/common/http'
+import { Injectable } from '@angular/core'
+import { CategoriesModel, UpdateCategoryRequest } from '../models/categories.model'
+import { environment } from '../../environments/environment'
 
 @Injectable({
-  providedIn: 'root',
+	providedIn: 'root',
 })
 export class CategoriesService {
-  constructor(private http: HttpClient) {}
+	constructor(private http: HttpClient) {}
 
-  getCategories() {
-    return this.http.get<CategoriesModel[]>(
-      'https://dev.tks.co.th/codepulseapi/api/Categories',
-    );
-  }
+	getCategories() {
+		return this.http.get<CategoriesModel[]>(environment.apiUrl + '/Categories')
+	}
 
-  deleteCategory(categoryId: string) {
-    return this.http.delete(
-      'https://dev.tks.co.th/codepulseapi/api/Categories/' + categoryId,
-    );
-  }
+	deleteCategory(categoryId: string) {
+		return this.http.delete(environment.apiUrl + '/Categories/' + categoryId)
+	}
+
+	updateCategory(categoryId: string, model: UpdateCategoryRequest) {
+		return this.http.put(environment.apiUrl + '/Categories/' + categoryId, model)
+	}
+
+	getCategoryById(categoryId: string) {
+		return this.http.get<CategoriesModel>(environment.apiUrl + '/Categories/' + categoryId)
+	}
 }

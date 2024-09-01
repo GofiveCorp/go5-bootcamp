@@ -1,0 +1,111 @@
+<div class="container">
+	<h1 class="mt-3">Blog Post Add</h1>
+
+	<form #form="ngForm" class="mt-3" (ngSubmit)="addBlogPost()">
+		<div class="form-group mt-2">
+			<label class="form-label mt-2" for="title">Title</label>
+			<input
+				type="text"
+				class="form-control"
+				id="title"
+				placeholder="Enter title"
+				name="title"
+				[(ngModel)]="blogPost.title"
+			/>
+		</div>
+		<div class="form-group mt-2">
+			<label class="form-label mt-2" for="urlHandle">Url Handle</label>
+			<input
+				type="text"
+				class="form-control"
+				id="urlHandle"
+				placeholder="Enter Url Handle"
+				name="urlHandle"
+				[(ngModel)]="blogPost.urlHandle"
+			/>
+		</div>
+
+		<div class="form-group mt-2">
+			<label class="form-label mt-2" for="shortDescription"> Short Description</label>
+
+			<input
+				class="form-control"
+				id="shortDescription"
+				placeholder="Enter short description"
+				name="shortDescription"
+				[(ngModel)]="blogPost.shortDescription"
+			/>
+		</div>
+
+		<div class="form-group mt-2">
+			<label class="form-label mt-2" for="content">Content</label>
+			<div class="d-flex flex-row">
+				<div class="col-6 p-2">
+					<textarea
+						class="form-control"
+						id="content"
+						placeholder="Enter content"
+						name="content"
+						[(ngModel)]="blogPost.content"
+						style="height: 350px; max-height: 500px"
+					></textarea>
+				</div>
+
+				<div class="col-6 p-2" style="height: 350px; max-height: 500px; overflow-y: auto">
+					<markdown [data]="blogPost.content"></markdown>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group mt-2">
+			<label class="form-label mt-2" for="featuredImageUrl">Feature Image Url</label>
+			<input
+				type="text"
+				class="form-control"
+				id="featuredImageUrl"
+				placeholder="Enter feature image url"
+				name="featuredImageUrl"
+				[(ngModel)]="blogPost.featuredImageUrl"
+			/>
+
+			@if (blogPost.featuredImageUrl) {
+				<img [src]="blogPost.featuredImageUrl" class="my-2" height="100"/>
+			}
+		</div>
+
+		<div class="form-group mt-2">
+			<label class="form-label mt-2" for="pubishDate">Publish Date</label>
+			<input type="date" class="form-control" id="publishDate" name="publishDate" [(ngModel)]="blogPost.publishDate" />
+		</div>
+
+		<div>
+			<label class="form-label mt-2" for="author">Author</label>
+			<input
+				type="text"
+				class="form-control"
+				id="author"
+				placeholder="Enter author"
+				name="author"
+				[(ngModel)]="blogPost.author"
+			/>
+		</div>
+
+		<div class="form-group mt-2">
+			<label class="form-label mt-2" for="category">Category</label>
+			<select multiple class="form-select" id="category" name="category" [(ngModel)]="blogPost.categories">
+				@for (category of categories; track category.id) {
+					<option [value]="category.id">{{ category.name }}</option>
+				}
+			</select>
+		</div>
+
+		<div class="form-group mt-2">
+			<input type="checkbox" class="form-check-input" id="isVisible" />
+			<label class="form-check-label" for="isVisible">Is Visible</label>
+		</div>
+
+		<div class="mt-2">
+			<button type="submit" class="btn btn-primary">Save</button>
+		</div>
+	</form>
+</div>
