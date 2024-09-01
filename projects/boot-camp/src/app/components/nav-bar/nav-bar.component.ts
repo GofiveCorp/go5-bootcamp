@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { RouterLink } from '@angular/router'
+import { Router, RouterLink } from '@angular/router'
 import { LoginService } from '../../auth/login/services/login.service'
 import { Subscription } from 'rxjs'
 import { User } from '../../auth/login/models/user.model'
@@ -15,12 +15,15 @@ export class NavBarComponent {
 	private _user?: Subscription
 
 	public user: User | undefined
-	constructor(private loginService: LoginService) {
+	constructor(
+		private loginService: LoginService,
+		private router: Router,
+	) {}
+
+	ngOnInit() {
 		this._user = this.loginService.$user.subscribe({
 			next: (user) => {
 				this.user = user
-
-				console.log('this.user => ', user)
 			},
 		})
 
@@ -29,6 +32,7 @@ export class NavBarComponent {
 
 	onLogout() {
 		this.loginService.logout()
+		this.router.navigateByUrl('/')
 	}
 
 	ngDestroy() {

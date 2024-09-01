@@ -10,7 +10,7 @@ export class CategoriesService {
 
   addCategory(category: CategoryRequest) {
     return this.http.post(
-      'https://dev.tks.co.th/codepulseapi/api/Categories',
+      'https://dev.tks.co.th/codepulseapi2/api/Categories',
       category,
     );
   }

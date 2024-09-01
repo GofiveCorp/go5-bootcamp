@@ -69,6 +69,12 @@
 									"with": "projects/boot-camp/src/environments/environment.development.ts"
 								}
 							]
+						},
+						"localhost": {
+							"optimization": false,
+							"extractLicenses": false,
+							"sourceMap": true,
+							"namedChunks": true
 						}
 					},
 					"defaultConfiguration": "production"
