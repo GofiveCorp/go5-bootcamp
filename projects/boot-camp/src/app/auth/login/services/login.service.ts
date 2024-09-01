@@ -23,4 +23,17 @@ export class LoginService {
 		localStorage.setItem('user-email', user.email!)
 		localStorage.setItem('user-roles', user.roles.join(','))
 	}
+
+	getUser(): User | undefined {
+		const email = localStorage.getItem('user-email')
+		const roles = localStorage.getItem('user-roles') // '1,2,3' => ['1', '2', '3'] (using split)
+
+		if (email && roles) {
+			return {
+				email: email,
+				roles: roles.split(','),
+			}
+		}
+		return undefined
+	}
 }
