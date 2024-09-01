@@ -23,6 +23,12 @@ export class NavBarComponent {
 				console.log('this.user => ', user)
 			},
 		})
+
+		this.user = this.loginService.getUser()
+	}
+
+	onLogout() {
+		this.loginService.logout()
 	}
 
 	ngDestroy() {

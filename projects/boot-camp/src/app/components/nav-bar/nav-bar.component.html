@@ -14,19 +14,21 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						Categories
-					</a>
-					<ul class="dropdown-menu">
-						<li>
-							<a class="dropdown-item" [routerLink]="['/categories']">Categories List</a>
-						</li>
-						<li>
-							<a class="dropdown-item" [routerLink]="['/categories/add']">Category Add</a>
-						</li>
-					</ul>
-				</li>
+				@if (user?.email && user?.roles?.includes('Writer')) {
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							Categories
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a class="dropdown-item" [routerLink]="['/categories']">Categories List</a>
+							</li>
+							<li>
+								<a class="dropdown-item" [routerLink]="['/categories/add']">Category Add</a>
+							</li>
+						</ul>
+					</li>
+				}
 			</ul>
 
 			<div class="d-flex align-items-center">
@@ -34,7 +36,7 @@
 					<span>
 						{{ user!.email }}
 					</span>
-					<button class="btn btn-primary ms-3">Logout</button>
+					<button class="btn btn-primary ms-3" (click)="onLogout()">Logout</button>
 				} @else {
 					<button class="btn btn-primary" [routerLink]="['/login']">Login</button>
 				}
