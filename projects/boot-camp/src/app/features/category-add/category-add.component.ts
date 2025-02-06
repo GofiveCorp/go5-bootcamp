@@ -15,26 +15,38 @@ import { Subscription } from 'rxjs';
 })
 export class CategoryAddComponent {
   private componentRef?: ComponentRef<any>;
+  private componentRef2?: ComponentRef<any>;
 
   private _nameChange?: Subscription;
   constructor(private viewContainer: ViewContainerRef) {}
 
   async ngOnInit() {
-    const module = await loadRemoteModule({
+    const module2 = await loadRemoteModule({
       type: 'module',
-      remoteEntry: 'http://localhost:4201/remoteEntry.js',
-      exposedModule: './CategoryAdd',
+      remoteEntry: 'http://localhost:4202/remoteEntry.js',
+      exposedModule: './PocComponent',
     });
-    this.componentRef = this.viewContainer.createComponent(
-      module.CategoryAddComponent,
-    );
-    this.componentRef.instance.name = signal<string>('testtestest');
+    // const module = await loadRemoteModule({
+    //   type: 'module',
+    //   remoteEntry: 'http://localhost:4201/remoteEntry.js',
+    //   exposedModule: './CategoryAdd',
+    // });
+    console.log('module => ', module2);
 
-    this._nameChange = this.componentRef.instance.nameChange.subscribe(
-      (name: string) => {
-        console.log('nameChange', name);
-      },
-    );
+    // console.log('module2 =>', module2);
+    this.componentRef = this.viewContainer.createComponent(module2.PocComponent);
+    // this.componentRef2 = this.viewContainer.createComponent(
+    //   module.CategoryAddComponent,
+    // );
+    console.log('componentRef =>', this.componentRef);
+    console.log('componentRef2 =>', this.componentRef2);
+    // this.componentRef.instance.name = signal<string>('testtestest');
+
+    // this._nameChange = this.componentRef.instance.nameChange.subscribe(
+    //   (name: string) => {
+    //     console.log('nameChange', name);
+    //   },
+    // );
 
     console.log('component Ref', this.componentRef);
   }

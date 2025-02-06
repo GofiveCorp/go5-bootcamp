@@ -5,22 +5,22 @@ export const routes: Routes = [
 	{
 		path: 'categories',
 		loadComponent: () => import('./features/categories/categories.component').then((m) => m.CategoriesComponent),
-		canActivate: [authGuard],
+		canActivate: [],
 	},
 	{
 		path: 'categories/add',
 		loadComponent: () => import('./features/category-add/category-add.component').then((m) => m.CategoryAddComponent),
-		canActivate: [authGuard],
+		canActivate: [],
 	},
 	{
 		path: 'blog-post',
 		loadComponent: () => import('./features/blog-post/blog-post.component').then((m) => m.BlogPostComponent),
-		canActivate: [authGuard],
+		canActivate: [],
 	},
 	{
 		path: 'blog-post/add',
 		loadComponent: () => import('./features/blog-post-add/blog-post-add.component').then((m) => m.BlogPostAddComponent),
-		canActivate: [authGuard],
+		canActivate: [],
 	},
 	{
 		path: 'home',

@@ -11,10 +11,20 @@ module.exports = withModuleFederationPlugin({
       "./projects/micro-front-end/src/features/category-add/category-add.component.ts",
   },
   shared: {
-    ...shareAll({
+    "@angular/core": {
       singleton: true,
       strictVersion: true,
       requiredVersion: "auto",
-    }),
+    },
+    "@angular/common": {
+      singleton: true,
+      strictVersion: true,
+      requiredVersion: "auto",
+    },
+    "@angular/router": {
+      singleton: true,
+      strictVersion: true,
+      requiredVersion: "auto",
+    },
   },
 });
